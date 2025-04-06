@@ -12,6 +12,8 @@
   - [Installation](#installation)
   - [Usage](#usage)
   - [How it works](#how-it-works)
+  - [FAQs](#faqs)
+    - [My widget does not display!](#my-widget-does-not-display)
   - [License](#license)
 
 ## Installation
@@ -71,6 +73,13 @@ Please refer to the documentation of [weas-widget](https://github.com/superstar5
 This plugin simply interfaces the `WeasWidget` object with the `ase.visualize` module. The `view` function returns the `WeasWidget` which is constructed from the
 `ase.Atoms` object as the output. The latter is then displayed by Jupyter.
 
+## FAQs
+
+### My widget does not display!
+
+1. Try restart your jupyter server. 
+2. If your jupyter server is run in a different python environment than the kernel, make sure python packages `ipywidgets` and `anywidget` is installed in **server's environment**. Hints of the missing package usually can be obtained from error messages returned by the browser.
+3. Force refresh the browser with F5 (or Ctrl/Shift + F5) to clear browser caches of the page.
 
 ## License
 
