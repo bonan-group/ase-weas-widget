@@ -1,0 +1,72 @@
+[build-system]
+requires = ["hatchling >= 1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ase-weas-widget"
+dynamic = ["version"]
+description = 'Visualizer plugin to use ase with weas-widget'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Bonan Zhu", email = "zhubonan@outlook.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "ase >=3.24","weas-widget"
+]
+
+[project.urls]
+Documentation = "https://github.com/zhubonan/ase-weas-widget#readme"
+Issues = "https://github.com/zhubonan/ase-weas-widget/issues"
+Source = "https://github.com/zhubonan/ase-weas-widget"
+
+[tool.hatch.version]
+path = "src/ase_weas_widget/__about__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ase_weas_widget"]
+
+[tool.hatch.build.targets.sdist]
+packages = ["src/ase_weas_widget"]
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/ase_weas_widget tests}"
+
+[tool.coverage.run]
+source_pkgs = ["src/ase_weas_widget", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/ase_weas_widget/__about__.py",
+]
+
+[tool.coverage.paths]
+ase_weas_widget = ["src/ase_weas_widget", "*/ase-weas-widget/src/ase_weas_widget"]
+tests = ["tests", "*/ase-weas-widget/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[project.entry-points."ase.visualize"]
+weas = "ase_weas_widget.registry:VIEWER_ENTRYPOINT"
